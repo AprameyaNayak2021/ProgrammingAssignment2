@@ -25,4 +25,16 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   
+   cacheMatrix <- x$getCache()
+  
+  if (!is.null(cacheMatrix)) {
+    message("loading cache matrix...")
+    return(cacheMatrix)
+  }
+  else {
+    dMatrix <- x$getMatrix()
+    cacheMatrix <- solve(dMatrix, ...)
+    x$setCache(cacheMatrix)
+    return(cacheMatrix)
+}
 }
